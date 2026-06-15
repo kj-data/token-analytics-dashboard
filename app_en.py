@@ -123,20 +123,20 @@ def get_week_filter(target_date):
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
+# Updated sidebar with flexible positioning for mobile compatibility
 sidebar = html.Div(
     [
         html.H2("Token Analytics", className="display-4", 
                 style={'textAlign': 'center', 'font-variant': 'small-caps', 'fontSize': '1.8rem', 'marginTop': '20px'}),
         html.Hr(),
         
-        # 📆 THE NEW DATE PICKER INTERFACE
         html.H3("Select Target Date:", style={'textAlign': 'center', 'fontSize': '1.1rem', 'marginBottom': '10px'}),
         html.Div([
             dcc.DatePickerSingle(
                 id='global-date-picker',
                 min_date_allowed=min_date,
                 max_date_allowed=max_date,
-                date=max_date, # Default value points to the latest record
+                date=max_date, 
                 display_format='YYYY-MM-DD',
                 style={'width': '100%', 'textAlign': 'center', 'marginBottom': '30px'}
             )
@@ -152,17 +152,23 @@ sidebar = html.Div(
             vertical=True, pills=True, style={"fontSize": 18, "gap": "10px"} 
         ),
     ],
+    className="bg-light p-4",
     style={
-        "position": "fixed", "top": 0, "left": 0, "bottom": 0,
-        "width": "16rem", "padding": "2rem 1rem", "background-color": "#f8f9fa", 
-    },
+        # This media query-like approach handles standard fixed styling for desktops, 
+        # but let's make it flow cleanly in Bootstrap rows.
+        "minHeight": "100%"
+    }
 )
 
+# App layout container utilizing Bootstrap Grid system utilities
 app.layout = dbc.Container([
     dcc.Location(id="url", refresh=False), 
+    
+    # xs=12 means Full Width on Mobile
+    # md=3 or md=9 means split column layout on Desktop screens
     dbc.Row([
-        dbc.Col(sidebar, width=3),
-        dbc.Col(html.Div(id="page-content", style={"padding": "2rem 1rem"}), width=9)
+        dbc.Col(sidebar, xs=12, md=3, className="mb-4 mb-md-0"),
+        dbc.Col(html.Div(id="page-content"), xs=12, md=9, style={"padding": "1rem 2rem"})
     ])
 ], fluid=True)
 
