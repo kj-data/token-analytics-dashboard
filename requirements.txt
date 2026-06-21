@@ -4,3 +4,4 @@ dash
 dash-bootstrap-components
 plotly
 gunicorn
+psycopg2-binary
