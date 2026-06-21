@@ -248,6 +248,7 @@ def render_page_content(pathname, selected_date):
 
         H1 = px.bar(
             tokens_por_franja_fn, x='h', y='tk_promedio_por_franja',
+            color_discrete_sequence=['#7F77DD'],
             title=f'<b>Average Tokens by Time Slot</b><br><sub>Fortnight Period: {fn_start} to {fn_end}</sub>',
             labels={'h': 'Time Slot', 'tk_promedio_por_franja': 'Average Tokens'}
         )
