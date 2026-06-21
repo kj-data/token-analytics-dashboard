@@ -339,8 +339,7 @@ def render_page_content(pathname, selected_date):
             ], style={'marginBottom': '30px', 'width': '400px'}),
 
             html.H3("Top 15 Users by Token Contribution (All-Time)"),
-            dbc.Table.from_dataframe(
-                ranking_df_hist[['Puesto', 'Usuario', 'Tokens']],
+            dbc.Table.from_dataframe(ranking_df_hist[['Puesto', 'Usuario', 'Tokens']].rename(columns={'Puesto': 'Rank', 'Usuario': 'User'}),
                 striped=True, bordered=True, hover=True,
                 style={'marginBottom': '30px', 'maxWidth': '600px'}
             ),
