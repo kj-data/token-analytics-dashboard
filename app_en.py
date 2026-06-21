@@ -38,10 +38,9 @@ df = df.rename(columns={'username': 'Usuario', 'tokens': 'Tokens', 'hour': 'Hora
 
 # Parse datetime
 df['Fecha'] = pd.to_datetime(df['Fecha'])
-df['Hora']  = pd.to_datetime(df['Hora'], utc=True).dt.tz_convert(None)
 
 df['fecha_hora'] = df.apply(
-    lambda row: datetime.combine(row['Fecha'].date(), row['Hora'].time()), axis=1
+    lambda row: datetime.combine(row['Fecha'].date(), row['Hora']), axis=1
 )
 df['fecha'] = df['fecha_hora'].dt.date
 
