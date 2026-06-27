@@ -1,5 +1,5 @@
 # Token Analytics Dashboard
-
+This dashboard is hosted on Render's free tier and may take up to 90 seconds to load. Thank you for your patience!
 **Live Demo:** [token-analytics-dashboard.onrender.com](https://token-analytics-dashboard.onrender.com)
 
 A multipage interactive dashboard built with Plotly Dash to analyze token revenue from live streaming sessions. Data is ingested in real time via a separate ETL pipeline and stored in a PostgreSQL database on Supabase.
