@@ -288,10 +288,13 @@ def render_page_content(pathname, selected_date):
             mapa_colores  = {user: color for user, color in zip(top_usuarios_semana, lista_colores)}
             mapa_colores['Others'] = 'lightgray'
 
+            orden_fechas = sorted(tokens_dia['fecha'].unique())
+            orden_fechas_bonitas = [pd.to_datetime(f).strftime('%a %d-%m') for f in orden_fechas]
+
             H4 = px.bar(
                 tokens_dia, x='fecha_bonita', y='Tokens', color='Usuario_agrupado',
                 title=f'<b>Daily Tokens — Week of {week_days[0].strftime("%Y-%m-%d")}</b>',
-                category_orders={'Usuario_agrupado': orden_leyenda},
+                category_orders={'Usuario_agrupado': orden_leyenda, 'fecha_bonita': orden_fechas_bonitas},
                 color_discrete_map=mapa_colores,
                 labels={'fecha_bonita': 'Date', 'Tokens': 'Total Tokens', 'Usuario_agrupado': 'User'},
             )
